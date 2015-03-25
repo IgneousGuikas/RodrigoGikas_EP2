@@ -197,8 +197,7 @@ def body_maker(erros):
         time.sleep(2)
         return True
 
-def repor_desenho(turtle, posicoes_letras, acertos, erros, erros_lista, window_comprimento):
-    coordenada_x = (window_comprimento/-2)+30
+def repor_desenho(turtle, posicoes_letras, acertos, erros):
     
     for i in acertos:
         if i == ' ':
@@ -228,20 +227,8 @@ def repor_desenho(turtle, posicoes_letras, acertos, erros, erros_lista, window_c
         desenho_left_arm(caneta, window.window_width())
         desenho_right_arm(caneta, window.window_width())
         desenho_left_leg(caneta, window.window_width())
-    elif erros == 6:
-        desenho_cabeca(caneta, window.window_width())
-        desenho_dorso(caneta, window.window_width())
-        desenho_left_arm(caneta, window.window_width())
-        desenho_right_arm(caneta, window.window_width())
-        desenho_left_leg(caneta, window.window_width())
-        desenho_right_leg(caneta, window.window_width())
-        caneta.setpos(-100,100)
-        caneta.write('Você perdeu', font=('Arial',18,'bold'))
-        return True
     else:
         None
-    
-    turtle.setpos(coordenada_x,-255)
 
 
 '''
@@ -315,7 +302,12 @@ while True:
                     caneta.setpos(-100,100)
                     caneta.write('Você ganhou', font=('Arial',18,'bold'))
                     time.sleep(2)
-                    break
+                    decisao = window.textinput('Jogo da Forca','Quer conticuar? (responda sim ou nâo)')
+                    if decisao == 'sim':
+                        break
+                    else:
+                        palpite = None
+                        break
                 elif escolha.isalpha() and len(escolha) == 1:
                     middle = str(unicodedata.normalize('NFKD',escolha).encode('ASCII','ignore'))
                     escolha_no_accent = middle[2:len(middle)-1]
@@ -334,14 +326,24 @@ while True:
                                                 
                     p = body_maker(erros)
                     if p == True:
-                        break
+                        decisao = window.textinput('Jogo da Forca','Quer conticuar? (responda sim ou nâo)')
+                        if decisao == 'sim':
+                            break
+                        else:
+                            palpite = None
+                            break
                     
                     
                     if len(acertos) == len(palavra):
                         caneta.setpos(-100,100)
                         caneta.write('Você ganhou', font=('Arial',18,'bold'))
                         time.sleep(2)
-                        break
+                        decisao = window.textinput('Jogo da Forca','Quer conticuar? (responda sim ou nâo)')
+                        if decisao == 'sim':
+                            break
+                        else:
+                            palpite = None
+                            break
                 else:
                     caneta.setpos(-95,100)
                     caneta.write('Escolha Inválida.', font=('Arial',18,'bold'))
@@ -352,7 +354,7 @@ while True:
                     nome_jogo(caneta)
                     desenho_forca(caneta, window.window_width())
                     desenho_espacos(caneta, letras_palavra, window.window_width())
-                    repor_desenho(caneta, posicoes_letras, acertos, erros, erros_lista, window.window_width())
+                    repor_desenho(caneta, posicoes_letras, acertos, erros)
         caneta.reset()
         window.reset()
         caneta_setup()
