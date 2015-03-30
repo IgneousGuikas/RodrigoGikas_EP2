@@ -195,7 +195,7 @@ def body_maker(erros):
         caneta.setpos(-100,100)
         caneta.write('Você perdeu', font=('Arial',18,'bold'))
         caneta.setpos(-130,70)
-        caneta.write('Média de erros: Todos', font=('Arial',14,'bold'))
+        caneta.write('Número de erros: Todos', font=('Arial',14,'bold'))
         time.sleep(2)
         return True
 
@@ -304,7 +304,7 @@ while True:
                     caneta.setpos(-100,100)
                     caneta.write('Você ganhou', font=('Arial',18,'bold'))
                     caneta.setpos(-100,70)
-                    caneta.write('Média de erros: {0}'.format(erros), font=('Arial',14,'bold'))
+                    caneta.write('Número de erros: {0}'.format(erros), font=('Arial',14,'bold'))
                     time.sleep(2)
                     decisao = window.textinput('Jogo da Forca','Quer conticuar? (responda sim ou nâo)')
                     if decisao == 'sim':
@@ -342,7 +342,7 @@ while True:
                         caneta.setpos(-100,100)
                         caneta.write('Você ganhou', font=('Arial',18,'bold'))
                         caneta.setpos(-100,70)
-                        caneta.write('Média de erros: {0}'.format(erros), font=('Arial',14,'bold'))
+                        caneta.write('Número de erros: {0}'.format(erros), font=('Arial',14,'bold'))
                         time.sleep(2)
                         decisao = window.textinput('Jogo da Forca','Quer conticuar? (responda sim ou nâo)')
                         if decisao == 'sim':
